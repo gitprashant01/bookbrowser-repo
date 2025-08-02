@@ -1,0 +1,55 @@
+
+<h2 class="section-title">📚 Your Favorite Books</h2>
+<div style="display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 16px;">
+  <button mat-raised-button color="primary" (click)="exportToCSV()">
+    📤 Export to CSV
+  </button>
+
+  <button mat-raised-button color="warn" (click)="clearAllFavorites()">
+    🗑️ Clear Favorites
+  </button>
+</div>
+
+
+<hr/>
+<!-- <mat-card *ngFor="let book of favoriteBooks" style="margin-bottom: 16px;">
+    <div style="margin-left: 16px;margin-top: 16px;">
+        <img *ngIf="book.cover_i" 
+            [src]="'https://covers.openlibrary.org/b/id/' + book.cover_i + '-M.jpg'" 
+            alt="{{ book.title }}" 
+            style="width: 100px; height: auto; margin-right: 16px;" />
+
+        <mat-card-title>{{ book.title }}</mat-card-title>
+        <mat-card-subtitle>{{ book.author_name?.[0] }}</mat-card-subtitle>
+        <p>First published: {{ book.first_publish_year }}</p>
+        <button mat-button color="warn" (click)="removeFromFavorites(book)">
+                 ❌ Remove from Favorites
+        </button>
+
+    </div>
+ 
+</mat-card> -->
+<div class="favorites-container">
+    <div class="book-grid">
+    <div *ngFor="let book of favoriteBooks" class="book-card">
+         <a [href]="'https://www.amazon.in/s?k=' + book.title + '&tag=yourtag-21'" target="_blank">
+          <button mat-stroked-button color="accent">🛒 Buy on Amazon</button>
+        </a>
+        <button mat-button color="warn" (click)="removeFromFavorites(book)" matTooltip="Remove from Favorites">
+                        ❌
+        </button>
+        <hr/>       
+       <img *ngIf="book.cover_i" 
+            [src]="'https://covers.openlibrary.org/b/id/' + book.cover_i + '-M.jpg'" 
+            alt="{{ book.title }}" 
+            style="width: 100px; height: auto; margin-right: 16px;" />     
+        <h3>{{ book.title }}</h3>
+        <p *ngIf="book.author_name">by {{ book.author_name[0] }}</p>
+       <p *ngIf="book.first_publish_year">First published: {{ book.first_publish_year }}</p>
+    
+    </div>
+    </div>
+
+</div>
+
+

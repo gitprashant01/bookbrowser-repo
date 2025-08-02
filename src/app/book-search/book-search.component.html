@@ -1,0 +1,77 @@
+<br/><br/>
+<h2 class="section-title">📚 Search Books</h2>
+
+ 
+<!-- <mat-form-field appearance="outline" style="align-items: center;">
+    <mat-label>Search for a book</mat-label>
+    <input matInput [(ngModel)]="searchTerm" (keyup.enter)="searchBooks()" />
+</mat-form-field> -->
+
+<div style="display: flex; align-items: center; margin-bottom: 24px;">
+  <mat-form-field appearance="outline" style="flex: 1; margin-left: 20px;">
+    <mat-label>Search for a book</mat-label>
+    <input matInput [(ngModel)]="searchTerm" (keyup.enter)="searchBooks()" />
+  </mat-form-field> <br/>
+  <button 
+    style="margin-top: -12px; margin-left: 20px;margin-right: 20px; width: 150px;" 
+    mat-raised-button 
+    color="primary" 
+    (click)="searchBooks()">
+    Search
+  </button>
+  
+</div>
+
+<!-- <button style="align-items: center;" mat-raised-button color="primary" (click)="searchBooks()">Search</button> -->
+<div *ngIf="isLoading" class="loader-container">
+  <mat-spinner diameter="50" color="accent"></mat-spinner>
+  <p>Please wait,Searching books…</p>
+</div>
+<div *ngIf="!isLoading && hasSearched && books.length === 0">
+  <div style="display: flex; flex-direction: column; align-items: center; margin: 32px 0;">
+    <mat-icon color="warn" style="font-size: 30px; margin-bottom: 8px;">search_off</mat-icon>
+    <p style="color: #b71c1c; font-size: 1.2rem; font-weight: 500; text-align: center; margin: 0;">
+      No books found.<br>
+      <span style="color: #333; font-weight: 400;">Please try a different search term.</span>
+    </p>
+  </div>
+</div>
+<div *ngIf="!isLoading && books.length > 0">
+<div class="booksearch-container">
+    <div class="book-grid">
+    <div *ngFor="let book of books" class="book-card">
+         <a [href]="'https://www.amazon.in/s?k=' + book.title + '&tag=yourtag-21'" target="_blank">
+          <button  mat-stroked-button color="accent">🛒 Buy on Amazon</button>
+        </a>
+         <!-- <button  color="accent" (click)="saveToFavorites(book)" matTooltip="Add to Favorites" style="margin-top: auto;">
+          ❤️
+        </button> -->
+        <button mat-button color="warn" (click)="saveToFavorites(book)" matTooltip="Add to Favorites">
+            ❤️
+        </button>
+        <hr/>
+       
+      <img *ngIf="book.cover_i; else noImage"
+        [src]="'https://covers.openlibrary.org/b/id/' + book.cover_i + '-M.jpg'"
+        alt="{{ book.title }}"
+        style="width: 100px; height: auto; margin-right: 16px;" />
+      <ng-template #noImage>
+        <div style="width: 100px; height: 150px; display: flex; align-items: center; justify-content: center; background: #f0f0f0; color: #888; font-size: 14px; margin-right: 16px;">
+          No Image Available
+        </div>
+      </ng-template>
+
+        <h3>{{ book.title }}</h3>
+        <p *ngIf="book.author_name">by {{ book.author_name[0] }}</p>
+        <p>First published: {{ book.first_publish_year }}</p>
+       
+    </div>
+    </div>
+
+</div>
+
+ 
+</div>
+
+
+

@@ -1,0 +1,66 @@
+
+<router-outlet>
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <a routerLink="/home" style="color: inherit; text-decoration: none;">
+  <span>📚 Book Browser</span>
+</a>
+</mat-toolbar>
+<br/>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" opened="false">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home">🏠 Home</a>
+      <a mat-list-item routerLink="/search">🔍 Search Books</a>
+      <!-- <a mat-list-item routerLink="/categories">📖 Categories</a> -->
+      <a mat-list-item routerLink="/favorites">❤️ Favorites</a>
+      <a mat-list-item routerLink="/about">ℹ️ About</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-card class="intro-card" style="margin-bottom: 24px;">
+    <h1 style="text-align: center;">📚 Welcome to Book Browser</h1>
+    <p style="text-align: center;">Discover books from around the world, save your favorites, and explore literary treasures — all in one place.</p>
+    <!-- <p class="tagline" style="text-align: center;">Crafted with ❤️ in India</p> -->
+    <button mat-raised-button color="primary" routerLink="/search">🔍 Start Exploring</button>
+  </mat-card>
+    <router-outlet></router-outlet>
+
+ <footer class="app-footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>📚 Book Browser</h3>
+      <p>Empowering readers with curated Indian literature and global knowledge.</p>
+    </div>
+
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a routerLink="/search">Search</a></li>
+        <li><a routerLink="/favorites">Favorites</a></li>
+        <li><a routerLink="/about">About</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="mailto:contact@bookbrowser.in">📧 Email Us</a></li>
+        <li><a href="https://twitter.com/bookbrowser" target="_blank">🐦 Twitter</a></li>
+        <li><a href="https://github.com/prashant-bookbrowser" target="_blank">💻 GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>Made with pride in India | © {{ currentYear }} Book Browser</p>
+  </div>
+</footer>
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+</router-outlet>

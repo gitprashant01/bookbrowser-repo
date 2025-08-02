@@ -1,0 +1,39 @@
+<div class="home-container">
+ 
+  <div class="features-grid" style="margin-bottom: 16px;">
+    <mat-card class="feature-card">
+      <mat-icon>search</mat-icon>
+      <h3>Smart Search</h3>
+      <p>Find books by title, author, or genre using Open Library’s global database.</p>
+    </mat-card>
+
+    <mat-card class="feature-card" style="margin-bottom: 16px;">
+      <mat-icon>favorite</mat-icon>
+      <h3>Save Favorites</h3>
+      <p>Keep track of your favorite reads and revisit them anytime.</p>
+    </mat-card>
+
+    <mat-card class="feature-card" style="margin-bottom: 16px;">
+      <mat-icon>download</mat-icon>
+      <h3>Export to CSV</h3>
+      <p>Download your reading list for sharing or archiving.</p>
+    </mat-card>
+  </div>
+
+  <h2 class="section-title">📚 Trending Books</h2>
+    <div class="book-grid">
+    <div *ngFor="let book of trendingBooks" class="book-card">
+         <a [href]="'https://www.amazon.in/s?k=' + book.title + '&tag=yourtag-21'" target="_blank">
+          <button mat-stroked-button color="accent">🛒 Buy on Amazon</button>
+        </a>
+        <hr/>
+        <img [src]="getCover(book)" alt="{{ book.title }}" />
+        <h3>{{ book.title }}</h3>
+        <p *ngIf="book.author_name">by {{ book.author_name[0] }}</p>
+       
+
+    </div>
+    </div>
+
+</div>
+
